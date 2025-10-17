@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart'; // tambahkan untuk RedTextWidget
 import 'package:flutter/material.dart';
 
 void main() {
@@ -105,6 +106,20 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
+            Container(
+              color: Colors.yellowAccent,
+              width: 50,
+              child: const RedTextWidget(
+                text: 'You have pushed the button this many times:',
+              ),
+            ),
+            Container(
+              color: Colors.greenAccent,
+              width: 100,
+              child: const Text(
+                'You have pushed the button this many times:',
+              ),
+            ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
@@ -117,6 +132,23 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+// RedTextWidget class for the provided Container
+class RedTextWidget extends StatelessWidget {
+  final String text;
+
+  const RedTextWidget({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoSizeText(
+      text,
+      style: const TextStyle(color: Colors.red, fontSize: 14),
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }
